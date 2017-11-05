@@ -1,4 +1,5 @@
 import os
+import pyexcel as pe
 from flask import Flask,render_template, request,json
 
 app = Flask(__name__)
@@ -11,11 +12,14 @@ def hello():
 def signUp():
     return render_template('signUp.html')
 
-@app.route('/data.csv')
-def csv():
-    return ('name,parent')
 
-@app.route('/signUpUser', methods=['POST', 'GET'])
+@app.route('/datacsv', methods = [ 'GET' ])
+def csv():
+    sheet = pe.load("data.csv")
+    return json.dumps(sheet.to_csv());
+
+
+@app.route('/signUpUser', methods = [ 'GET' ])
 def signUpUser():
     print(request.method)
     return json.dumps({'secret': 343});
