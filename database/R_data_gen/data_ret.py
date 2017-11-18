@@ -66,3 +66,14 @@ soInfo = urllib.request.urlopen(url)
 decompressed_data=zlib.decompress(soInfo.read(), 16+zlib.MAX_WBITS)
 jsonResponse = json.loads(decompressed_data.decode('utf-8'))
 count = jsonResponse["items"][0]["count"]    # output
+
+#############                 GOOGLE ANALYTICS                  ################
+target = "ggplot2"
+reference = "jquery"
+category = 0
+
+from pytrends.request import TrendReq
+pytrends = TrendReq(hl='en-US', tz=360)
+kw_list = [reference, target]
+pytrends.build_payload(kw_list, cat = category, timeframe='today 1-m', geo='', gprop='')
+pytrends.interest_over_time()

@@ -10,7 +10,7 @@ def hello():
 
 @app.route('/signUp')
 def signUp():
-    return render_template('signUp.html')
+    return render_template('UI.html')
 
 
 @app.route('/datacsv', methods = [ 'GET' ])
