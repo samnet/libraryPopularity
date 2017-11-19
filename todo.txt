@@ -8,3 +8,14 @@ Autocomplete (DONE):
 - 3. http://sliptree.github.io/bootstrap-tokenfield/  (super popular, super website, ... no update for 4 years..)
 - 4. https://github.com/dingyi1993/jquery-magicsearch   (great output but no starts etc.)
 Went for option 2, https://select2.org/appearance.
+
+Reactive resizing: 
+start by reading:https://css-tricks.com/scale-svg/
+then https://gordonlesti.com/responsive-embedded-d3-svg/
+then https://www.packtpub.com/books/content/responsive-visualizations-using-d3js-and-bootstrap
+- use a combination of viewbox and preserveaspect ratio as in 
+https://stackoverflow.com/questions/17626555/responsive-d3-chart
+- https://stackoverflow.com/questions/9400615/whats-the-best-way-to-make-a-d3-js-visualisation-layout-responsive
+- did not work?
+https://codepen.io/billdwhite/pen/mzowi
+http://eyeseast.github.io/visible-data/2013/08/28/responsive-charts-with-d3/
