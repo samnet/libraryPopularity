@@ -18,6 +18,13 @@
   <!-- <link rel="stylesheet" type="text/css" href="static/bootstrap4/css/bootstrap-grid.min.css"> -->
 
 
+    <!-- RADAR -->
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <!-- radard script does not run without d3.v3.... -->
+    <script src="../static/js_css/radarChart/radar.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/js_css/RadarChart/radar.css">
+
+
   <script src="http://d3js.org/d3.v3.min.js"></script>
 
   <style>
@@ -28,7 +35,7 @@
     width:100%;
     height:100%;
   }
-  .chart-container {
+  .chart-container, #chart-container {
     width:50%;
     height:50%;
     border: 1px dotted silver;
@@ -43,12 +50,13 @@
 </head>
 
 <body>
-  <div class="chart-container"></div>
+  <div id="chart-container"></div>
+  <div class="chart-container" id="radarchart0"></div>
 
   <script>
 
   $(function(){
-      var $container = $('.chart-container'),
+      var $container = $('#chart-container'),
           τ = 2 * Math.PI,
           width = $container.width(),
           height = $container.height(),
@@ -61,7 +69,7 @@
           .outerRadius(outerRadius)
           .startAngle(0);
 
-      var svg = d3.select('.chart-container').append("svg")
+      var svg = d3.select('#chart-container').append("svg")
           .attr("width", '100%')
           .attr("height", '100%')
           .attr('viewBox','0 0 '+Math.min(width,height) +' '+Math.min(width,height) )
@@ -69,47 +77,49 @@
           .append("g")
           .attr("transform", "translate(" + Math.min(width,height) / 2 + "," + Math.min(width,height) / 2 + ")");
 
-      var text = svg.append("text")
-          .text('0%')
-          .attr("text-anchor", "middle")
-          .style("font-size",fontSize+'px')
-          .attr("dy",fontSize/3)
-          .attr("dx",2);
+      // var text = svg.append("text")
+      //     .text('0%')
+      //     .attr("text-anchor", "middle")
+      //     .style("font-size",fontSize+'px')
+      //     .attr("dy",fontSize/3)
+      //     .attr("dx",2);
 
       var background = svg.append("path")
           .datum({endAngle: τ})
           .style("fill", "#7cc35f")
           .attr("d", arc);
+      //
+      // var foreground = svg.append("path")
+      //     .datum({endAngle: 0 * τ})
+      //     .style("fill", "#57893e")
+      //     .attr("d", arc);
+      // //
+      // setInterval(function() {
+      //   foreground.transition()
+      //       .duration(750)
+      //       .call(arcTween, Math.random() * τ);
+      // }, 1500);
 
-      var foreground = svg.append("path")
-          .datum({endAngle: 0 * τ})
-          .style("fill", "#57893e")
-          .attr("d", arc);
-
-      setInterval(function() {
-        foreground.transition()
-            .duration(750)
-            .call(arcTween, Math.random() * τ);
-      }, 1500);
-
-      function arcTween(transition, newAngle) {
-
-          transition.attrTween("d", function(d) {
-
-              var interpolate = d3.interpolate(d.endAngle, newAngle);
-
-              return function(t) {
-
-                  d.endAngle = interpolate(t);
-
-                  text.text(Math.round((d.endAngle/τ)*100)+'%');
-
-                  return arc(d);
-              };
-          });
-      }
+      // function arcTween(transition, newAngle) {
+      //
+      //     transition.attrTween("d", function(d) {
+      //
+      //         var interpolate = d3.interpolate(d.endAngle, newAngle);
+      //
+      //         return function(t) {
+      //
+      //             d.endAngle = interpolate(t);
+      //
+      //             text.text(Math.round((d.endAngle/τ)*100)+'%');
+      //
+      //             return arc(d);
+      //         };
+      //     });
+      // }
   });
   </script>
+  <script src="../static/js_css/radarChart/radar_gen.js"></script>
+
 </body>
 
 

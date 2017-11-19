@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <!-- STANDARD: JQUERY, D3.JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+
+  <!-- POPPER (demanded by Bootstrap) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.8.2/umd/popper.js"></script>
+
+  <!-- BOOTSTRAP, JS and CSS-->
+  <script src="../static/js_css/bootstrap4/js/bootstrap.min.js"></script>
+  <!-- <script src="static/bootstrap4/js/bootstrap.bundle.min.js"></script> -->
+  <link rel="stylesheet" type="text/css" href="../static/js_css/bootstrap4/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" type="text/css" href="static/bootstrap4/css/bootstrap-grid.min.css"> -->
+
+  <!-- RADAR -->
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <!-- radard script does not run without d3.v3.... -->
+  <script src="../static/js_css/radarChart/radar.js"></script>
+  <link rel="stylesheet" type="text/css" href="../static/js_css/RadarChart/radar.css">
+
+  <!-- PLOTLY -->
+  <script src="../static/js_css/plotly-latest.min.js"></script>
+
+<!-- General CSS -->
+  <link rel="stylesheet" type="text/css" href="../static/js_css/general.css">
+
+
+  <style>
+    body { padding-top: 70px; }
+    navbar-text {font-size: 50%;}
+    #box1, #box2, #box3, #box4 {
+      border: 2px solid black;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <!-- CONTAINER -->
+  <div class="container-fluid">
+
+    <!-- Row 1  -->
+    <div class="row">
+      <div class="col-6">
+        <div id="box1">
+          <div id="radarchart0"></div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div id="box2">
+
+
+        </div>
+      </div>
+    </div>
+    <!-- Row 2 -->
+    <div class="row">
+      <div class="col-12">
+        <div id="box3">
+          <div id="timeseries0"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Row Last -->
+    <div class="row">
+      <div class="col-12">
+        <button type="button" class="btn btn-info">Generate Report</button>
+      </div>
+    <div>
+
+  </div>
+
+  <!-- GENERATOR SCRIPTS -->
+  <script src="../static/js_css/radarChart/radar_gen.js"></script>
+  <script src="../static/js_css/timeSeries/ts_gen.js"></script>
+ 
+</body>
+
+
+
+</html>
