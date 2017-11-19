@@ -1,2 +1,10 @@
 UI:
 add links to official webpage, github repo, stackoverflow stuff
+For github, check last update... I just
+
+Autocomplete (DONE):
+- 1. http://itsolutionstuff.com/post/multi-select-autocomplete-jquery-example-with-codeexample.html
+- 2. https://select2.org/getting-started/basic-usage
+- 3. http://sliptree.github.io/bootstrap-tokenfield/  (super popular, super website, ... no update for 4 years..)
+- 4. https://github.com/dingyi1993/jquery-magicsearch   (great output but no starts etc.)
+Went for option 2, https://select2.org/appearance.

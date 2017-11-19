@@ -24,7 +24,11 @@
   <!-- PLOTLY -->
   <script src="../static/js_css/plotly-latest.min.js"></script>
 
-  <!-- General CSS -->
+  <!--  AUTOCOMPLETE -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+<!-- General CSS -->
   <link rel="stylesheet" type="text/css" href="../static/js_css/general.css">
 
 
@@ -63,10 +67,16 @@
   <div class="container-fluid">
     <!-- Row 0 -->
     <div class="row">
-      <div class="col-3">
+      <div class="col-5">
         <div class="form-group">
+
+          <select class="js-example-basic-multiple" name="states[]" multiple="multiple" style="width: 50%">
+            <option value="AL">Alabama</option>
+            <option value="WY">Wyoming</option>
+          </select>
+<!--
           <label for="usr"> </label>
-          <input type="text" class="form-control" id="usr">
+          <input type="text" class="form-control" id="usr"> -->
         </div>
       </div>
     </div>
@@ -156,8 +166,11 @@
   <!-- GENERATOR SCRIPTS -->
   <script src="../static/js_css/radarChart/radar_gen.js"></script>
   <script src="../static/js_css/timeSeries/ts_gen.js"></script>
-
-
+  <script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+    });
+  </script>
 </body>
 
 
