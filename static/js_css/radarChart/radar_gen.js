@@ -31,7 +31,8 @@ $(document).ready(function(){
         h: h,
         maxValue: 0.6,
         levels: 6,
-        ExtraWidthX: 300
+        ExtraWidthX: 200,
+        ExtraWidthY: 100
       }
 
       //Call function to draw the Radar chart

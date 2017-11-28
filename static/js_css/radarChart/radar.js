@@ -21,8 +21,8 @@ var RadarChart = {
 	 radians: 2 * Math.PI,
 	 opacityArea: 0.5,
 	 ToRight: 5,
-	 TranslateX: 80,
-	 TranslateY: 30,
+	 TranslateX: 100,
+	 TranslateY: 100,
 	 ExtraWidthX: 100,
 	 ExtraWidthY: 100,
 	 color: d3.scale.category10()
@@ -44,11 +44,14 @@ var RadarChart = {
 
 	var g = d3.select(id)
 			.append("svg")
-			.attr("width", cfg.w+cfg.ExtraWidthX)
-			.attr("height", cfg.h+cfg.ExtraWidthY)
+      .attr('width', '100%')
+			.attr('height', '100%')
+			.attr("viewBox", "0 0 " + (cfg.w+cfg.ExtraWidthX) + " " + (cfg.h+cfg.ExtraWidthY))
+			.attr("preserveAspectRatio", "xMinYMin meet")
 			.append("g")
 			.attr("transform", "translate(" + cfg.TranslateX + "," + cfg.TranslateY + ")");
 			;
+
 
 	var tooltip;
 
