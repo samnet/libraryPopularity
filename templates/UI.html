@@ -28,6 +28,12 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
+  <!--  DATATABLES -->
+  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+
+
 <!-- General CSS -->
   <link rel="stylesheet" type="text/css" href="../static/js_css/general.css">
 
@@ -63,7 +69,7 @@
 
       <!-- Navbar text-->
     <span class="navbar-text">
-      Library Due Dilligence... 3 Languages, 44320 Libraries ... and you!
+      Library Due Dilligence... 3 Languages, 44320 Libraries verified!
     </span>
   </nav>
 
@@ -93,46 +99,7 @@
       </div>
       <div class="col-6">
         <div id="box2">
-
-
-          <table class="table table-hover table-striped">
-            <thead>
-              <tr>
-                <th></th>      <!-- library name -->
-                <th>Prevalence</th>
-                <th>Tendency</th>
-                <th>Add to comp</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>plotly.js</td>
-                <td>10</td>
-                <td>0</td>
-                <td><input type="checkbox" name="myTextEditBox0" value="checked" checked /> </td>
-              </tr>
-              <tr>
-                <td>chart.js</td>
-                <td>7</td>
-                <td>0</td>
-                <td><input type="checkbox" name="myTextEditBox1" value="checked" checked/> </td>
-
-              </tr>
-              <tr>
-                <td>morris.js</td>
-                <td>7</td>
-                <td>-1</td>
-                <td><input type="checkbox" name="myTextEditBox2" value="" /> </td>
-              </tr>
-              <tr>
-                <td>metricsgraphics.js</td>
-                <td>4</td>
-                <td>1</td>
-                <td><input type="checkbox" name="myTextEditBox3" value="" /> </td>
-              </tr>
-            </tbody>
-          </table>
-
+          <table id="datatable0" class="display" width="100%"></table>
         </div>
       </div>
     </div>
@@ -170,6 +137,8 @@
   <!-- GENERATOR SCRIPTS -->
   <script src="../static/js_css/radarChart/radar_gen.js"></script>
   <script src="../static/js_css/timeSeries/ts_gen.js"></script>
+  <script src="../static/js_css/dt/dt_gen.js"></script>
+
   <script>
     $(document).ready(function() {
         $('.js-example-basic-multiple').select2();
