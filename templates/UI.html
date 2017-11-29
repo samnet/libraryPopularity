@@ -31,6 +31,10 @@
   <!--  DATATABLES -->
   <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
   <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+  <script src="https://cdn.datatables.net/select/1.2.3/js/dataTables.select.min.js"></script>
+  <link href="https://cdn.datatables.net/select/1.2.3/css/select.dataTables.min.css" rel="stylesheet" />
+
+
 
 
 
@@ -80,13 +84,21 @@
       <div class="col-5">
         <div class="form-group">
 
-          <select class="js-example-basic-multiple" name="states[]" multiple="multiple" style="width: 50%">
-            <option value="AL">Alabama</option>
-            <option value="WY">Wyoming</option>
+          <select id="input0" onchange = 'processInput($("#input0").val())' class="js-example-basic-multiple" name="states[]" multiple="multiple" style="width: 50%">
+            <optgroup label="Alaskan/Hawaiian Time Zone">
+               <option value="AK">Alaska</option>
+               <option value="HI">Hawaii</option>
+             </optgroup>
+             <optgroup label="Pacific Time Zone">
+               <option value="CA">California</option>
+               <option value="NV">Nevada</option>
+               <option value="OR">Oregon</option>
+               <option value="WA">Washington</option>
+             </optgroup>
           </select>
-<!--
-          <label for="usr"> </label>
-          <input type="text" class="form-control" id="usr"> -->
+
+
+
         </div>
       </div>
     </div>
@@ -99,7 +111,7 @@
       </div>
       <div class="col-6">
         <div id="box2">
-          <table id="datatable0" class="display" width="100%"></table>
+          <table id="datatable0" cellspacing="0" class="display" width="100%"></table>
         </div>
       </div>
     </div>
@@ -135,6 +147,7 @@
   <script src="../static/js_css/radarChart/radar_gen.js"></script>
   <script src="../static/js_css/timeSeries/ts_gen.js"></script>
   <script src="../static/js_css/dt/dt_gen.js"></script>
+  <script src="../static/js_css/form/input_gen.js"></script>
 
   <script>
     $(document).ready(function() {
