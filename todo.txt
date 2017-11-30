@@ -22,3 +22,8 @@ http://eyeseast.github.io/visible-data/2013/08/28/responsive-charts-with-d3/
 
 More Ajax:
 http://attilathedud.me/dealing-with-flask-ajax/
+
+
+PYTHON :
+list of all packages: construct it scraping https://pypi.python.org/pypi?%3Aaction=browse
+https://pypi.python.org/simple/

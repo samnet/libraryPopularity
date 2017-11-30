@@ -1,11 +1,16 @@
 
+
+import urllib.request, json, codecs, datetime
+from pytrends.request import TrendReq # google trends
+import zlib
+
 ######################        CRAN DOWNLOAD DATA         #######################
 
 # Input:
-packname = "abjutils"
+pack = "ggplot2"
+pack2 = "waffect"
 
 # Libraries
-import urllib.request, json, codecs, datetime
 reader = codecs.getreader("utf-8")
 
 # Inception Date
@@ -30,8 +35,8 @@ def dwldVol_since_inception_R(aPackage):
 
 ###################  LOCATING A GITHUB REPO + INFO ON IT   #####################
 
-# Input:
-aPackage = "ggplot2"
+# # Input:
+aPackage = "waffect"
 aLanguage = "R"
 
 def locate_github_repo(aLanguage, aPackage):
@@ -39,8 +44,9 @@ def locate_github_repo(aLanguage, aPackage):
     url = url + "+language:" + aLanguage + "&sort=stars&order=desc"
     res = urllib.request.urlopen(url)
     obj = json.load(reader(res))
-    first_match = obj["items"][0]
     out = list()
+    if obj["total_count"] == 0: return(out)   # no corresponding github repo found
+    first_match = obj["items"][0]
     out.append(first_match["html_url"])   # address
     out.append(first_match["stargazers_count"]) # stars
     out.append(first_match["forks_count"]) # forks count
@@ -48,14 +54,13 @@ def locate_github_repo(aLanguage, aPackage):
     out.append(first_match["description"]) # description
     return(out)
 
-locate_github_repo(language, packname)
+# locate_github_repo(aLanguage, packname)
 
 
 ########      RETRIEVING NO OF INCLUSIONS ON GITHUB PUBLISHED CODE      ########
 ## I.E., SCRAPING GITHUB
 
 #############      RETRIEVING STACKOVERFLOW ACTIVITY INFO       ################
-import zlib
 
 # Input:
 tag = "ggplot2"
@@ -66,18 +71,17 @@ def tag_count_SO(tag):
     soInfo = urllib.request.urlopen(url)
     decompressed_data=zlib.decompress(soInfo.read(), 16+zlib.MAX_WBITS)
     jsonResponse = json.loads(decompressed_data.decode('utf-8'))
-    return(jsonResponse["items"][0]["count"])    # output
+    if jsonResponse["items"] == []: return(0)  # no match on St Ov for input tag
+    return(jsonResponse["items"][0]["count"])
 
-tag_count_SO(tag)
+# tag_count_SO(tag)
 #############                 GOOGLE ANALYTICS                  ################
-
-from pytrends.request import TrendReq
-
-target = "ggplot2"
-reference = "jquery"
+#
+aPackage = "lubridate"
+aReference = "ggplot2"
 category = 0
 
-def relativePop(aPackage, aReference = "jquery"):
+def relative_pop(aPackage, aReference = "ggplot2", category = 0):
     pytrends = TrendReq(hl='en-US', tz=360)
     kw_list = [aReference, aPackage]
     pytrends.build_payload(kw_list, cat = category, timeframe='today 1-m', geo='', gprop='')
@@ -85,7 +89,7 @@ def relativePop(aPackage, aReference = "jquery"):
     r.columns = ["Reference", "Target", "isPartial"]
     return(r['Target'].sum()/r['Reference'].sum())
 # should perhaps get rid of cat arg to keep default value
-def historicalPop(kw_list):
+def historical_pop(kw_list):
     pytrends = TrendReq(hl='en-US', tz=360)
     pytrends.build_payload(kw_list, cat = category, timeframe='today 5-y', geo='', gprop='')
     return(pytrends.interest_over_time())

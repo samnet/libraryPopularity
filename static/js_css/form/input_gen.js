@@ -13,6 +13,22 @@ packList.forEach(function(item, i){
   document.getElementById('optgrp0').appendChild(lib);
 })
 
-function processInput(input){
-  console.log(input)
-}
+$("#input0").change(function(){
+    currentSelection = $("#input0").val()
+    $.ajax({
+       url : '/sendMeDatJS',
+       type : 'GET',
+       dataType : 'json',
+       data: "currentSelection="+ currentSelection , // annoying detail: if you put spaces around the equal sign it sends nuts!
+       success : function(response, statut){
+         console.log(response)
+       },
+       error : function(resultat, statut, erreur){
+         console.log('/sendMeDatJS ajax call failed')
+       },
+       complete : function(resultat, statut){
+         console.log('/sendMeDatJS ajax call completed')
+       }
+    });
+    console.log(currentSelection)
+})
