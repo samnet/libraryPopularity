@@ -23,13 +23,20 @@ def inception_date_R(aPackage):
     return(inception_date[0:10])
 
 # Download volume since inception date
-def dwldVol_since_inception_R(aPackage):
+def dwldVol_since_inception_R(aPackage, total = False):
     inception_date = inception_date_R(aPackage)
     today = datetime.datetime.today()
     url = "https://cranlogs.r-pkg.org/downloads/daily/" + inception_date + ":"
-    url = url + str(today.year) + "-" + str(today.month) + "-" + str(today.day) + "/" + packname
+    url = url + str(today.year) + "-" + str(today.month) + "-" + str(today.day) + "/" + aPackage
+    print(url)
     ts = urllib.request.urlopen(url)
-    return(ts.read())
+    out = json.loads(ts.read())[0]
+    if total:
+        totalsum = 0
+        for jour in out["downloads"]:
+            totalsum = totalsum + jour["downloads"]
+        return(totalsum)
+    return(out)
 
 # https://cranlogs.r-pkg.org/downloads/daily/2014-01-03:2015-02-03/ggplot2
 

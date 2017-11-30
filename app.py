@@ -25,11 +25,13 @@ def sendItDatJS():
     githubDat = list()
     soDat = list()
     gPop = list()
+    cranData = list()
     for pack in currentSelection:
         githubDat.append(data_ret.locate_github_repo("R", pack))
         soDat.append(data_ret.tag_count_SO(pack))
         gPop.append(data_ret.relative_pop(pack))
-    out = {"github": githubDat, "soflw": soDat, "googleTrend": gPop}
+        cranData.append(data_ret.dwldVol_since_inception_R(pack, total = True))
+    out = {"github": githubDat, "soflw": soDat, "googleTrend": gPop, "cran": cranData}
     return(jsonify(out))
 
 @app.route('/signUpUser', methods = [ 'GET' ])
