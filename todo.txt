@@ -23,7 +23,15 @@ http://eyeseast.github.io/visible-data/2013/08/28/responsive-charts-with-d3/
 More Ajax:
 http://attilathedud.me/dealing-with-flask-ajax/
 
+no. des (priority)
+1. other languages (+)
+2. database (++++)
+3. commenting (+++)
+4. heroku deployment (++)
+5. sync time series with server data (+++)
+6. think about way of coming up with comparables (might be easier for some langauges... else nlp?) (+++)
 
+OTHER LANGUAGES:
 PYTHON :
 list of all packages: construct it scraping https://pypi.python.org/pypi?%3Aaction=browse
 https://pypi.python.org/simple/

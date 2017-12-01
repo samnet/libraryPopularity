@@ -18,6 +18,7 @@ def csv():
     sheet = pe.load("data.csv")
     return json.dumps(sheet.to_csv());
 
+
 @app.route('/sendMeDatJS', methods = [ 'GET' ])
 def sendItDatJS():
     currentSelection = request.args.get("currentSelection").split(',')

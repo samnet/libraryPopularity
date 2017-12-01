@@ -24,11 +24,11 @@ def inception_date_R(aPackage):
 
 # Download volume since inception date
 def dwldVol_since_inception_R(aPackage, total = False):
+    # aPackage = 'ggplot2'
     inception_date = inception_date_R(aPackage)
     today = datetime.datetime.today()
     url = "https://cranlogs.r-pkg.org/downloads/daily/" + inception_date + ":"
-    url = url + str(today.year) + "-" + str(today.month) + "-" + str(today.day) + "/" + aPackage
-    print(url)
+    url = url + str(today)[0:10] + "/" + aPackage
     ts = urllib.request.urlopen(url)
     out = json.loads(ts.read())[0]
     if total:
@@ -38,6 +38,8 @@ def dwldVol_since_inception_R(aPackage, total = False):
         return(totalsum)
     return(out)
 
+
+# dwldVol_since_inception_R("ggplot2")
 # https://cranlogs.r-pkg.org/downloads/daily/2014-01-03:2015-02-03/ggplot2
 
 ###################  LOCATING A GITHUB REPO + INFO ON IT   #####################

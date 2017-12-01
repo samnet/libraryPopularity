@@ -52,13 +52,17 @@ function pageGenerator(response){
   console.log("cran: "+ response.cran[0])
 
   supSet = []
+  reference = [7000,2000,1,6000000,1]
+  // dplyr data... use most popular pack as reference point
   for (i = 0; i < response.github.length; i++) {
      subSet = [response.soflw[i], response.github[i][1], response.googleTrend[i], response.cran[i], .5]
-     supSet.push([subSet])
+     var subSet = subSet.map(function(n, j) { return Math.round(1000*n / reference[j])/1000; });  // rounding to third decimal, and normalizing wrt reference
+     supSet.push(subSet)
   }
 
   console.log("supSet: "+ supSet)
 
 console.log("now to generate the radar")
-  radarConstructor("radarchart0")
+
+  radarConstructor("radarchart0", arrayOfDataArrays = supSet)
 }
