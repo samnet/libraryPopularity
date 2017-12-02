@@ -10,7 +10,7 @@ from pymongo import MongoClient, TEXT
 import datetime
 client = MongoClient()
 INIT = True
-aColl = client.lipopR.coll1
+aColl = client.lipopR.coll2
 if(INIT):
     aColl.create_index([('tag', TEXT)], unique = True)
 
@@ -20,13 +20,22 @@ if(INIT):
 def establish_collection_entry(aColl, aTag):
     found = aColl.find_one({'tag': aTag})
     if str(found) == 'None': return 'None'
+    weekly = []
+    runningCount = 0
+    downloads = found["cran"]["downloads"]
+    for i, msrmt in enumerate(downloads): # fount # stored daily, but use weekly
+        runningCount = runningCount + msrmt["downloads"]
+        if i%5 ==0:
+            weekly.append({"day": msrmt["day"], "downloads": runningCount})
+            runningCount = 0
+    found["cran"]["downloads"] = weekly
     return found
 
 def retrieve_all_pack_info(packName):
     gh = data_ret.locate_github_repo("R", packName)
     so = data_ret.tag_count_SO(packName)
     gt = data_ret.relative_pop(packName)
-    cran = data_ret.dwldVol_since_inception_R(packName, total = True)
+    cran = data_ret.dwldVol_since_inception_R(packName)
     docQual = .5
     return({"github": gh, "soflw": so, "googleTrend": gt, "cran": cran, "doc": docQual})
 

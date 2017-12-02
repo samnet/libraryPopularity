@@ -44,23 +44,94 @@ $(document).ready(function(){
 })
 
 function pageGenerator(response){
-  console.log("RESPONSE: \n"+ response)
-console.log(response)
-  // console.log("gitthub: "+ response.github[0][1])
-  // console.log("google: "+ response.googleTrend[0])
-  // console.log("so: "+ response.soflw[0])
-  // console.log("cran: "+ response.cran[0])
-  //
-  // supSet = []
-  // reference = [7000,2000,1,6000000,1]
-  // // dplyr data... use most popular pack as reference point
-  // for (i = 0; i < response.github.length; i++) {
-  //    subSet = [response.soflw[i], response.github[i][1], response.googleTrend[i], response.cran[i], .5]
-  //    var subSet = subSet.map(function(n, j) { return Math.round(1000*n / reference[j])/1000; });  // rounding to third decimal, and normalizing wrt reference
-  //    supSet.push(subSet)
-  // }
-  //
-  // console.log("supSet: "+ supSet)
-  // console.log("now to generate the radar")
-  // radarConstructor("radarchart0", arrayOfDataArrays = supSet)
+  console.log("RESPONSE: \n")
+  console.log(response)
+  currentSelection = $("#input0").val()
+
+  supSetTS = []
+  supSetRadar = []
+  referenceRadar = [7000,2000,1,6000000,1]
+  currentSelection.forEach(function(tag, i){
+    // build time series data
+    var data = response[tag]
+    console.log(data)
+    var dates = unpack(data.cran.downloads, 'day')
+    var dailyDwld = unpack(data.cran.downloads, 'downloads')
+    supSetTS.push([dates, dailyDwld])
+    // build radar data
+    var githubDat = data.github.length > 0 ? data.github[1] : 0; // case where no match on gihub
+    var totalCranDwld = arraySum(dailyDwld)
+    subSet = [data.soflw, githubDat, data.googleTrend, totalCranDwld, data.doc]
+    var subSet = subSet.map(function(n, j) { return Math.round(1000*n / referenceRadar[j])/1000; });  // rounding and normalizing wrt reference
+    supSetRadar.push(subSet)
+  })
+  console.log("supSet: ", supSetRadar)
+  console.log("supSet: ", supSetTS)
+  draw_plotly_TS(supSetTS, id = "timeseries0", names = currentSelection)
+  radarConstructor("radarchart0", arrayOfDataArrays = supSetRadar)
+}
+
+function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+}
+
+function arraySum(anArray){
+  var count=0;
+  for (var i=anArray.length; i--;) { // apparently faster so
+    count+=anArray[i];
+  }
+  return(count)
+}
+
+
+
+
+function draw_plotly_TS(data, id = "timeseries0", names = ["One", "Two"], title = "Downloads"){
+
+  dataArray = []
+
+  data.forEach(function(item, i){
+    var trace = {
+      type: "scatter",
+      mode: "lines",
+      name: names[i],
+      x: item[0],
+      y: item[1],
+      line: {color: "#" + Math.random().toString(16).slice(2, 8)}
+    }
+    console.log("names[i]: ",  +names[i])
+    dataArray.push(trace)
+  })
+
+  var layout = {
+    autosize: true,
+    title: title,
+    xaxis: {
+      autorange: true,
+      range: ['2015-02-17', '2017-02-16'],
+      rangeselector: {buttons: [
+          {
+            count: 1,
+            label: '1m',
+            step: 'month',
+            stepmode: 'backward'
+          },
+          {
+            count: 6,
+            label: '6m',
+            step: 'month',
+            stepmode: 'backward'
+          },
+          {step: 'all'}
+        ]},
+      rangeslider: {range: ['2015-02-17', '2017-02-16']},
+      type: 'date'
+    },
+    yaxis: {
+      autorange: true,
+      range: [86.8700008333, 138.870004167],
+      type: 'linear'
+    }
+  };
+  Plotly.newPlot(id, dataArray, layout);
 }

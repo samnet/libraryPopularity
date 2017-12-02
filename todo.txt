@@ -30,6 +30,9 @@ no. des (priority)
 4. heroku deployment (++)
 5. sync time series with server data (+++)
 6. think about way of coming up with comparables (might be easier for some langauges... else nlp?) (+++)
+7. file/directory reorg
+
+Time series: random colors, weekly data, 
 
 OTHER LANGUAGES:
 PYTHON :
