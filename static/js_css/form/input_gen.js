@@ -37,32 +37,30 @@ $(document).ready(function(){
            }
         });
       }
-      console.log(currentSelection)
+      console.log("Current Sel: " + currentSelection)
   })
   // trigger a change so the page gets populated upon launching (ow. no change)
   $("#input0").change()
 })
 
 function pageGenerator(response){
-  console.log(response)
-
-  console.log("gitthub: "+ response.github[0][1])
-  console.log("google: "+ response.googleTrend[0])
-  console.log("so: "+ response.soflw[0])
-  console.log("cran: "+ response.cran[0])
-
-  supSet = []
-  reference = [7000,2000,1,6000000,1]
-  // dplyr data... use most popular pack as reference point
-  for (i = 0; i < response.github.length; i++) {
-     subSet = [response.soflw[i], response.github[i][1], response.googleTrend[i], response.cran[i], .5]
-     var subSet = subSet.map(function(n, j) { return Math.round(1000*n / reference[j])/1000; });  // rounding to third decimal, and normalizing wrt reference
-     supSet.push(subSet)
-  }
-
-  console.log("supSet: "+ supSet)
-
-console.log("now to generate the radar")
-
-  radarConstructor("radarchart0", arrayOfDataArrays = supSet)
+  console.log("RESPONSE: \n"+ response)
+console.log(response)
+  // console.log("gitthub: "+ response.github[0][1])
+  // console.log("google: "+ response.googleTrend[0])
+  // console.log("so: "+ response.soflw[0])
+  // console.log("cran: "+ response.cran[0])
+  //
+  // supSet = []
+  // reference = [7000,2000,1,6000000,1]
+  // // dplyr data... use most popular pack as reference point
+  // for (i = 0; i < response.github.length; i++) {
+  //    subSet = [response.soflw[i], response.github[i][1], response.googleTrend[i], response.cran[i], .5]
+  //    var subSet = subSet.map(function(n, j) { return Math.round(1000*n / reference[j])/1000; });  // rounding to third decimal, and normalizing wrt reference
+  //    supSet.push(subSet)
+  // }
+  //
+  // console.log("supSet: "+ supSet)
+  // console.log("now to generate the radar")
+  // radarConstructor("radarchart0", arrayOfDataArrays = supSet)
 }
