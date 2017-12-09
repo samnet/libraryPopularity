@@ -5,4 +5,5 @@ __pycache__
 fbapp/static/*.jpg
 app.db
 geckodriver.log
+requirementsP2.txt
 .cache/
