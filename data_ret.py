@@ -22,10 +22,10 @@ import zlib
 
 # combine info from all above mentionned sources - return a dict
 def retrieve_all_pack_info(packName):
-    gh = data_ret.locate_github_repo("R", packName)
-    so = data_ret.tag_count_SO(packName)
-    gt = data_ret.relative_pop(packName)
-    cran = data_ret.dwldVol_since_inception_R(packName)
+    gh = locate_github_repo("R", packName)
+    so = tag_count_SO(packName)
+    gt = relative_pop(packName)
+    cran = dwldVol_since_inception_R(packName)
     docQual = .5
     return({"github": gh, "soflw": so, "googleTrend": gt, "cran": cran, "doc": docQual})
 
