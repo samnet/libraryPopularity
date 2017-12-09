@@ -2,13 +2,15 @@
 AXISTITLES = ["Discussion forums (SO)", "Developer activity (GH)", "Web search (Google data)"
   , "Download volumes (ditto)", "Documentation quality"]
 
+
+// input: tag corresponding to div id (str), data (array of array),  titles (array)
 function radarConstructor(tag, arrayOfDataArrays = [[1,1,1,1,1]], axisTitles = AXISTITLES) {
-  // 
+
   var w = 500;
   var h = 500;
   var colorscale = d3.scale.category10();
 
-  var dataSup = []
+  var dataSup = []  // builds the proper object for feeding into RadarChart
   arrayOfDataArrays.forEach(function(array, i){
     var dataSub = []
     array.forEach(function(measurement, j){
@@ -32,49 +34,66 @@ function radarConstructor(tag, arrayOfDataArrays = [[1,1,1,1,1]], axisTitles = A
   RadarChart.draw("#" + tag, dataSup, mycfg);
 }
 
+function colorPalette(){
+  return "#" + Math.random().toString(16).slice(2, 8) // get a list of 10 nice colors
+}
 
+// input: data (an array of arrays, an id, the latter of the form [dates, prices], names (an array), title (str))
+function draw_plotly_TS(data, id = "timeseries0", names = ["One", "Two"], title = "Downloads"){
 
-$(document).ready(function(){
-  // radarConstructor("radarchart0")
-  // var w = 500;
-  // var h = 500;
-  //
-  // var colorscale = d3.scale.category10();
-  // console.log("radar_gen 1")
-  //
-  // //Legend titles
-  // var LegendOptions = ['Smartphone','Tablet'];
-  // console.log("radar_gen 2")
-  // //Data
-  // var d = [
-  //   [
-  //   {axis:"Discussion forums (SO)",value:0.59},
-  //   {axis:"Developer activity (GH)",value:.34},
-  //   {axis:"Web search (Google data)",value:0.42},
-  //   {axis:"Download volumes (ditto)",value:.34},
-  //   {axis:"Documentation quality",value:.84}
-  //   ],[
-  //   {axis:"Discussion forums (SO)",value:0.39},
-  //   {axis:"Developer activity (GH)",value:.32},
-  //   {axis:"Web search (Google data)",value:0.12},
-  //   {axis:"Download volumes (ditto)",value:.38},
-  //   {axis:"Documentation quality",value:.24}
-  //   ]
-  // ];
-  //
-  // //Options for the Radar chart, other than default
-  // var mycfg = {
-  //   w: w,
-  //   h: h,
-  //   maxValue: 0.6,
-  //   levels: 6,
-  //   ExtraWidthX: 200,
-  //   ExtraWidthY: 100
-  // }
-  //
-  // //Call function to draw the Radar chart
-  // //Will expect that data is in %'s
-  // RadarChart.draw("#radarchart0", d, mycfg);
+  dataArray = []
+  range = []
+  data.forEach(function(item, i){ // constuct Trace object to feed into Plotly.newPlot
+    // get range of item[1]
+    // if top of range higher that current top, raise it... same with bottom
+    var trace = {
+      type: "scatter",
+      mode: "lines",
+      name: names[i],
+      x: item[0],
+      y: item[1],
+      line: {color: "#" + Math.random().toString(16).slice(2, 8)}
+      // line: {color: colorPalette[i]}
+    }
+    // console.log("names[i]: ",  +names[i])
+    dataArray.push(trace)
+  })
+
+  var layout = {  // constuct Layout object to feed into Plotly.newPlot
+    autosize: true,
+    title: title,
+    xaxis: {
+      autorange: true,
+      range: ['2010-02-17', '2017-02-16'],
+      rangeselector: {buttons: [
+          {
+            count: 1,
+            label: '1m',
+            step: 'month',
+            stepmode: 'backward'
+          },
+          {
+            count: 6,
+            label: '6m',
+            step: 'month',
+            stepmode: 'backward'
+          },
+          {step: 'all'}
+        ]},
+      rangeslider: {range: ['2015-02-17', '2017-02-16']}, // Change that to earliest inception dte
+      type: 'date'
+    },
+    yaxis: {
+      autorange: true,
+      range: [86.8700008333, 138.870004167], // must make this adaptive...
+      type: 'linear'
+    }
+  };
+  Plotly.newPlot(id, dataArray, layout);
+}
+
+// FOLLOWING IS RELATED TO RADAR
+ // $(document).ready(function(){
 
   // ////////////////////////////////////////////
   // /////////// Initiate legend ////////////////
@@ -127,5 +146,4 @@ $(document).ready(function(){
   //   ;
   // //
   // // });
-  console.log("Radar_gen: finished.")
-});
+/// });

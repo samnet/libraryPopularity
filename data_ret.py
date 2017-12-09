@@ -1,19 +1,44 @@
+'''
+Goal: retrieve information about a R package, from the following sources:
+- GitHub (info on popularity, description ...) - GH
+- StackOverflow (info on popularity) - SO
+- Google Trend (unofficial API) (same) - GT
+- Cran (info on downloads over time) - Cran
+Use retrieve_all_pack_info(.). It combines all the other functions specified here.
 
+Functions defined in this module:
+- retrieve_all_pack_info (combines all the below functions)
+- inception_date_R (Cran)
+- dwldVol_since_inception_R (CRAN)
+- locate_github_repo (GH)
+- tag_count_SO (SO)
+- relative_pop (GT)
+- historical_pop (GT)
+'''
 
 import urllib.request, json, codecs, datetime
 from pytrends.request import TrendReq # google trends
 import zlib
 
-######################        CRAN DOWNLOAD DATA         #######################
+# combine info from all above mentionned sources - return a dict
+def retrieve_all_pack_info(packName):
+    gh = data_ret.locate_github_repo("R", packName)
+    so = data_ret.tag_count_SO(packName)
+    gt = data_ret.relative_pop(packName)
+    cran = data_ret.dwldVol_since_inception_R(packName)
+    docQual = .5
+    return({"github": gh, "soflw": so, "googleTrend": gt, "cran": cran, "doc": docQual})
+
+## CRAN DOWNLOAD DATA
 
 # Input:
-pack = "ggplot2"
-pack2 = "waffect"
+# pack = "ggplot2"    # dbg
+# pack2 = "waffect"   # dbg
 
 # Libraries
 reader = codecs.getreader("utf-8")
 
-# Inception Date
+# Inception Date - return a string
 def inception_date_R(aPackage):
     all = urllib.request.urlopen("http://crandb.r-pkg.org/" + aPackage + "/all")
     obj = json.load(reader(all))
@@ -22,32 +47,28 @@ def inception_date_R(aPackage):
     inception_date = timeline[keys[0]]
     return(inception_date[0:10])
 
-# Download volume since inception date
+# Download volume since inception date - return dict or int (sum total) if total = True
 def dwldVol_since_inception_R(aPackage, total = False):
-    # aPackage = 'ggplot2'
     inception_date = inception_date_R(aPackage)
     today = datetime.datetime.today()
     url = "https://cranlogs.r-pkg.org/downloads/daily/" + inception_date + ":"
     url = url + str(today)[0:10] + "/" + aPackage
     ts = urllib.request.urlopen(url)
     out = json.loads(ts.read())[0]
-    if total:
+    if total: # compute total number of downloads since inception
         totalsum = 0
         for jour in out["downloads"]:
             totalsum = totalsum + jour["downloads"]
         return(totalsum)
     return(out)
 
-
 # dwldVol_since_inception_R("ggplot2")
-# https://cranlogs.r-pkg.org/downloads/daily/2014-01-03:2015-02-03/ggplot2
 
-###################  LOCATING A GITHUB REPO + INFO ON IT   #####################
+## LOCATING A GITHUB REPO + INFO ABOUT IT
+# aPackage = "waffect  # dbg
+# aLanguage = "R"      # dbg
 
-# # Input:
-aPackage = "waffect"
-aLanguage = "R"
-
+# return dict containing all sorts of info abt package found on GH
 def locate_github_repo(aLanguage, aPackage):
     url = "https://api.github.com/search/repositories?q=" + aPackage
     url = url + "+language:" + aLanguage + "&sort=stars&order=desc"
@@ -63,33 +84,35 @@ def locate_github_repo(aLanguage, aPackage):
     out.append(first_match["description"]) # description
     return(out)
 
-# locate_github_repo(aLanguage, packname)
+# locate_github_repo(aLanguage, packname)   # dbg
 
+## RETRIEVING STACKOVERFLOW ACTIVITY INFO
 
-########      RETRIEVING NO OF INCLUSIONS ON GITHUB PUBLISHED CODE      ########
-## I.E., SCRAPING GITHUB
+# tag = "ggplot2"    # dbg
 
-#############      RETRIEVING STACKOVERFLOW ACTIVITY INFO       ################
-
-# Input:
-tag = "ggplot2"
-
+# retrieve no. of questions having the input as a tag - return an int
 def tag_count_SO(tag):
     url = "https://api.stackexchange.com/2.2/tags/" + tag + "/"
     url = url + "related?page=1&pagesize=1&site=stackoverflow"
-    soInfo = urllib.request.urlopen(url)
+    soInfo = urllib.request.urlopen(url)  # this is compressed
     decompressed_data=zlib.decompress(soInfo.read(), 16+zlib.MAX_WBITS)
     jsonResponse = json.loads(decompressed_data.decode('utf-8'))
     if jsonResponse["items"] == []: return(0)  # no match on St Ov for input tag
     return(jsonResponse["items"][0]["count"])
 
 # tag_count_SO(tag)
-#############                 GOOGLE ANALYTICS                  ################
-#
-aPackage = "lubridate"
-aReference = "ggplot2"
-category = 0
 
+## GOOGLE ANALYTICS
+
+# aPackage = "lubridate"
+# aReference = "ggplot2"
+# category = 0
+
+# To do: calibrate the normalisation
+# retrieve popularity (over last month) as a search concept from google trend - return an int
+# nota bene: level is not informative per se.. so I normalise it wrt a  "reference"... problem:
+# 1. program will bug when the reference is chosen as an input
+# 2. is this normalisation meaningful?
 def relative_pop(aPackage, aReference = "ggplot2", category = 0):
     pytrends = TrendReq(hl='en-US', tz=360)
     kw_list = [aReference, aPackage]
@@ -97,8 +120,15 @@ def relative_pop(aPackage, aReference = "ggplot2", category = 0):
     r = pytrends.interest_over_time()
     r.columns = ["Reference", "Target", "isPartial"]
     return(r['Target'].sum()/r['Reference'].sum())
-# should perhaps get rid of cat arg to keep default value
+
+# retrieve popularity as a search concept over the last 5 y
 def historical_pop(kw_list):
     pytrends = TrendReq(hl='en-US', tz=360)
     pytrends.build_payload(kw_list, cat = category, timeframe='today 5-y', geo='', gprop='')
     return(pytrends.interest_over_time())
+
+
+##  RETRIEVING NO OF INCLUSIONS ON GITHUB PUBLISHED CODE
+## I.E., SCRAPING GITHUB
+# Not done. Is it a good idea?
+# https://www.google.ch/search?q=scan+github+for+a+keyword&oq=scan+github+for+a+keyword&aqs=chrome..69i57.6424j0j7&sourceid=chrome&ie=UTF-8

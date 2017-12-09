@@ -37,15 +37,15 @@ $(document).ready(function(){
            }
         });
       }
-      console.log("Current Sel: " + currentSelection)
+      // console.log("Current Sel: " + currentSelection)
   })
   // trigger a change so the page gets populated upon launching (ow. no change)
   $("#input0").change()
 })
 
 function pageGenerator(response){
-  console.log("RESPONSE: \n")
-  console.log(response)
+  // console.log("RESPONSE: \n")
+  // console.log(response)
   currentSelection = $("#input0").val()
 
   supSetTS = []
@@ -54,7 +54,7 @@ function pageGenerator(response){
   currentSelection.forEach(function(tag, i){
     // build time series data
     var data = response[tag]
-    console.log(data)
+    // console.log(data)
     var dates = unpack(data.cran.downloads, 'day')
     var dailyDwld = unpack(data.cran.downloads, 'downloads')
     supSetTS.push([dates, dailyDwld])
@@ -65,8 +65,8 @@ function pageGenerator(response){
     var subSet = subSet.map(function(n, j) { return Math.round(1000*n / referenceRadar[j])/1000; });  // rounding and normalizing wrt reference
     supSetRadar.push(subSet)
   })
-  console.log("supSet: ", supSetRadar)
-  console.log("supSet: ", supSetTS)
+  // console.log("supSet: ", supSetRadar)
+  // console.log("supSet: ", supSetTS)
   draw_plotly_TS(supSetTS, id = "timeseries0", names = currentSelection)
   radarConstructor("radarchart0", arrayOfDataArrays = supSetRadar)
 }
@@ -81,57 +81,4 @@ function arraySum(anArray){
     count+=anArray[i];
   }
   return(count)
-}
-
-
-
-
-function draw_plotly_TS(data, id = "timeseries0", names = ["One", "Two"], title = "Downloads"){
-
-  dataArray = []
-
-  data.forEach(function(item, i){
-    var trace = {
-      type: "scatter",
-      mode: "lines",
-      name: names[i],
-      x: item[0],
-      y: item[1],
-      line: {color: "#" + Math.random().toString(16).slice(2, 8)}
-    }
-    console.log("names[i]: ",  +names[i])
-    dataArray.push(trace)
-  })
-
-  var layout = {
-    autosize: true,
-    title: title,
-    xaxis: {
-      autorange: true,
-      range: ['2015-02-17', '2017-02-16'],
-      rangeselector: {buttons: [
-          {
-            count: 1,
-            label: '1m',
-            step: 'month',
-            stepmode: 'backward'
-          },
-          {
-            count: 6,
-            label: '6m',
-            step: 'month',
-            stepmode: 'backward'
-          },
-          {step: 'all'}
-        ]},
-      rangeslider: {range: ['2015-02-17', '2017-02-16']},
-      type: 'date'
-    },
-    yaxis: {
-      autorange: true,
-      range: [86.8700008333, 138.870004167],
-      type: 'linear'
-    }
-  };
-  Plotly.newPlot(id, dataArray, layout);
 }

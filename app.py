@@ -14,9 +14,7 @@ aColl = client.lipopR.coll2
 if(INIT):
     aColl.create_index([('tag', TEXT)], unique = True)
 
-
-
-
+# querry "aColl" for info about "aTag". If not found, return "None". 
 def establish_collection_entry(aColl, aTag):
     found = aColl.find_one({'tag': aTag})
     if str(found) == 'None': return 'None'
@@ -31,22 +29,16 @@ def establish_collection_entry(aColl, aTag):
     found["cran"]["downloads"] = weekly
     return found
 
-def retrieve_all_pack_info(packName):
-    gh = data_ret.locate_github_repo("R", packName)
-    so = data_ret.tag_count_SO(packName)
-    gt = data_ret.relative_pop(packName)
-    cran = data_ret.dwldVol_since_inception_R(packName)
-    docQual = .5
-    return({"github": gh, "soflw": so, "googleTrend": gt, "cran": cran, "doc": docQual})
-
+# retrieve info about "aTag" and create entry in "aColl". Return that entry.
 def populate_collection(aColl, aTag, data = {}):
-    if data == {}: data = retrieve_all_pack_info(aTag)
+    if data == {}: data = data_ret.retrieve_all_pack_info(aTag)
     data["tag"] = aTag
     data["creation_date"] = datetime.datetime.utcnow()
     data["update_date"] = datetime.datetime.utcnow()
     aColl.insert_one(data)   # insert
     return(establish_collection_entry(aColl, aTag))   # verify and confirm
 
+# get entry corresponding to "aTag" in "aColl". If not found, create it on the way.
 def get_document(aColl, aTag):
     result = establish_collection_entry(aColl, aTag)
     if (result == 'None'):
@@ -69,22 +61,6 @@ def signUp():
 def csv():
     sheet = pe.load("data.csv")
     return json.dumps(sheet.to_csv());
-
-# @app.route('/sendMeDatJS', methods = [ 'GET' ])
-# def sendItDatJS():
-#     currentSelection = request.args.get("currentSelection").split(',')
-#     print("Data:" , currentSelection)
-#     githubDat = list()
-#     soDat = list()
-#     gPop = list()
-#     cranData = list()
-#     for pack in currentSelection:
-#         githubDat.append(data_ret.locate_github_repo("R", pack))
-#         soDat.append(data_ret.tag_count_SO(pack))
-#         gPop.append(data_ret.relative_pop(pack))
-#         cranData.append(data_ret.dwldVol_since_inception_R(pack, total = True))
-#     out = {"github": githubDat, "soflw": soDat, "googleTrend": gPop, "cran": cranData}
-#     return(jsonify(out))
 
 @app.route('/sendMeDatJS', methods = [ 'GET' ])
 def sendItDatJS():
