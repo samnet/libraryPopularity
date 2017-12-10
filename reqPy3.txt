@@ -1,5 +1,0 @@
-pickle
-Flask
-pyexcel
-pytrends
-pandas
