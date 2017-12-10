@@ -1,26 +1,10 @@
 
 
-
-
-Reactive resizing:
-start by reading:https://css-tricks.com/scale-svg/
-then https://gordonlesti.com/responsive-embedded-d3-svg/
-then https://www.packtpub.com/books/content/responsive-visualizations-using-d3js-and-bootstrap
-- use a combination of viewbox and preserveaspect ratio as in
-https://stackoverflow.com/questions/17626555/responsive-d3-chart
-- https://stackoverflow.com/questions/9400615/whats-the-best-way-to-make-a-d3-js-visualisation-layout-responsive
-- did not work?
-https://codepen.io/billdwhite/pen/mzowi
-http://eyeseast.github.io/visible-data/2013/08/28/responsive-charts-with-d3/
-
-More Ajax:
-http://attilathedud.me/dealing-with-flask-ajax/
-
 no. des (priority)
 1. other languages (+)
-2. create database function file (++++)
+  2. create database function file (++++)
 3. commenting (+++)
-4. heroku deployment (++)
+  4. heroku deployment (++)
 6. think about way of coming up with comparables (might be easier for some langauges... else nlp?) (+++)
 T (on paper) 7. file/directory reorg
 8. hardcode the reference for hte function data_ret.relative_pop
@@ -47,13 +31,29 @@ Cryptography and Security
 
 
 
-
-
 OTHER LANGUAGES:
 PYTHON :
 list of all packages: construct it scraping https://pypi.python.org/pypi?%3Aaction=browse
 https://pypi.python.org/simple/
 
+
+
+
+=============== TO READ TO LEARN =============
+
+Reactive resizing:
+start by reading:https://css-tricks.com/scale-svg/
+then https://gordonlesti.com/responsive-embedded-d3-svg/
+then https://www.packtpub.com/books/content/responsive-visualizations-using-d3js-and-bootstrap
+- use a combination of viewbox and preserveaspect ratio as in
+https://stackoverflow.com/questions/17626555/responsive-d3-chart
+- https://stackoverflow.com/questions/9400615/whats-the-best-way-to-make-a-d3-js-visualisation-layout-responsive
+- did not work?
+https://codepen.io/billdwhite/pen/mzowi
+http://eyeseast.github.io/visible-data/2013/08/28/responsive-charts-with-d3/
+
+More Ajax:
+http://attilathedud.me/dealing-with-flask-ajax/
 
 
 =============== ARCHIVE ================

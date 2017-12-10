@@ -3,7 +3,12 @@ var packList = ["A3", "abbyyR", "abc", "abc.data", "ABC.RAP", "ABCanalysis", "ab
 
 
 
+popularRlibs =  ["viridisLite","devtools","readr","dplyr","ggplot2","readxl","shiny","R6","tidyr",
+"boot","Rcpp","data.table","tibble","mgcv","psych","xlsx","tidyverse","lubridate",
+"stingr","colorspace","backports","XML"]
 
+var shuffled = popularRlibs.sort(function(){return .5 - Math.random()});
+var preSelection=shuffled.slice(0,1); // For some reason I don't manage to have pre selection > 1
 
 $(document).ready(function(){
   // Populate the tag selection input list
@@ -17,8 +22,7 @@ $(document).ready(function(){
     lib.innerHTML = item
     document.getElementById('optgrp0').appendChild(lib); // append individual tags
   })
-  randomNum = Math.floor((Math.random() * packList.length-1) + 1);
-  document.getElementById('input0').selectedIndex = randomNum;// pre-select random tag
+   document.getElementById('input0').value = preSelection;
   // side note: should restrict this pre selection to well known library pairs
   $("#input0").change(function(){
       currentSelection = $("#input0").val()

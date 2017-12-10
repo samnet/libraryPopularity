@@ -7,3 +7,5 @@ app.db
 geckodriver.log
 requirementsP2.txt
 .cache/
+database/
+pyUtil/
