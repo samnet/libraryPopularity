@@ -1,7 +1,7 @@
 
 from pymongo import MongoClient, TEXT
 import datetime
-import data_ret
+import liPop.data_ret as data_ret
 # client = MongoClient()
 INIT = False
 # aColl = client.lipopR.coll2
