@@ -27,7 +27,10 @@ def retrieve_all_pack_info(packName):
     gt = relative_pop(packName)
     cran = dwldVol_since_inception_R(packName)
     docQual = .5
-    return({"github": gh, "soflw": so, "googleTrend": gt, "cran": cran, "doc": docQual})
+    categories = list()
+    categories.append(0)
+    return({"github": gh, "soflw": so, "googleTrend": gt, "cran": cran,
+        "doc": docQual, "cat": categories})
 
 ## CRAN DOWNLOAD DATA
 

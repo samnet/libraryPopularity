@@ -1,4 +1,5 @@
 env3/
+.env3/
 env/
 *.pyc
 __pycache__
