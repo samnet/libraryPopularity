@@ -3,10 +3,22 @@
 # it s read before instance/config.py, so it overwritten by it
 DEBUG = False
 MY_VARIABLE = 666
-DBUSER = "sl"
-DBPASSWORD = "imperial"
-MONGOURI = "mongodb://" + DBUSER + ":" + DBPASSWORD + "@ds135866.mlab.com:35866/lolipop0"
 
+
+# DBUSER = "sl"
+# DBPASSWORD = "imperial"
+# DBPORT = "35866"
+# DBNAME = "lolipop0"
+# DBSERVER = "ds135866"
+# MONGOURI = "mongodb://" + DBUSER + ":" + DBPASSWORD + "@"+ DBSERVER + ".mlab.com:" + DBPORT + "/" + DBNAME
+
+
+DBUSER = "heroku_kkmn7mbg"
+DBPASSWORD = "um3c11v432illv93k3o05tlfdv"
+DBPORT = "37686"
+DBNAME = "heroku_kkmn7mbg"
+DBSERVER = "ds135866"
+MONGOURI = "mongodb://heroku_kkmn7mbg:um3c11v432illv93k3o05tlfdv@ds137686.mlab.com:37686/heroku_kkmn7mbg"
 
 
 #
