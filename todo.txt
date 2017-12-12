@@ -1,43 +1,42 @@
 
+=========== OVERALL ==========
+What s to be done?
+- FE: make the UI more compelling
+- BE: the back end more professional
+- INFO: work on the information content, for R
+- EXT: think about where to get similar information for other language. Consign it here:
+google spread sheet
 
+Language | Pkg list | Dld info | git, so are same
+R           cran      cran
+Py
+Js
+
+=========== CONCRETLY ==========
 no. des (priority)
-1. other languages (+)
-  2. create database function file (++++)
-3. commenting (+++)
-  4. heroku deployment (++)
-6. think about way of coming up with comparables (might be easier for some langauges... else nlp?) (+++)
-T (on paper) 7. file/directory reorg
-8. hardcode the reference for hte function data_ret.relative_pop
+FE:
 9. add info boxes for each library with links to official webpage, github repo, stackoverflow stuff
-T 10. have preselection. random pair from a set of 200 well known libraries:
-- establish popularity ranking by downloads from the list
-- get top 200 ... you are done.
-11. rename radar_gen to visualisation_gen and get rid of ts_gen after having copied its content (resizing) to a js file
+T 10. have preselection. random pair from a set of 200 well known libraries
 T 12. draw plotly ts must be made smarter (range, color, dates)
 T 13. function colorPalette
 T 14. add a box a flat with tabs (one for each selected item) that contains all relevant link
-T 15. re make wireframe for doc
 16. Have another input box, the "task". Goal of this input box is to build up a database so to be able to propose alternatives.
+BE:
+8. hardcode the reference for hte function data_ret.relative_pop
+11. rename radar_gen to visualisation_gen and get rid of ts_gen after having copied its content (resizing) to a js file
+INFO:
+6. think about way of coming up with comparables (might be easier for some langauges... else nlp?) (+++)
+EXTENSION
+1. other languages (+)
+MISC
+3. commenting (+++)
 17. TS is kept undefined, that enables us to give different metrics depending on the language
 
-See this topology: https://pypi.python.org/pypi?%3Aaction=browse
-Graphics
-Plotting
-Scientific (non M&S) Programming: Maths & Statistics
-Network
-System
-AI
-Cryptography and Security
 
+=============== PYTHON =============
 
-
-OTHER LANGUAGES:
-PYTHON :
 list of all packages: construct it scraping https://pypi.python.org/pypi?%3Aaction=browse
 https://pypi.python.org/simple/
-
-
-
 
 =============== TO READ TO LEARN =============
 

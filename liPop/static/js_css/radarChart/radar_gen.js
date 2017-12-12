@@ -39,7 +39,7 @@ function colorPalette(){
 }
 
 // input: data (an array of arrays, an id, the latter of the form [dates, prices], names (an array), title (str))
-function draw_plotly_TS(data, id = "timeseries0", names = ["One", "Two"], title = "Downloads"){
+function drawPlotlyTS(data, id = "timeseries0", names = ["One", "Two"], title = "Downloads"){
 
   dataArray = []
   range = []
