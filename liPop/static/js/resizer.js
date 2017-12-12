@@ -1,6 +1,4 @@
- 
-
-//////////////////////
+// This script handles the responsive sizing of the plotly time series. It was 
 // copied from https://gist.github.com/aerispaha/63bb83208e6728188a4ee701d2b25ad5
 
 var gd3 = d3.select('#timeseries0')

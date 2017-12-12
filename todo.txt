@@ -14,6 +14,7 @@ Js
 
 =========== CONCRETLY ==========
 no. des (priority)
+write read me
 FE:
 9. add info boxes for each library with links to official webpage, github repo, stackoverflow stuff
 T 10. have preselection. random pair from a set of 200 well known libraries

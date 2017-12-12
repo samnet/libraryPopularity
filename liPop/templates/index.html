@@ -18,8 +18,8 @@
   <script src="https://d3js.org/d3.v3.min.js"></script>
 
   <!-- radard script does not run without d3.v3.... -->
-  <script src="../static/js_css/radarChart/radar.js"></script>
-  <link rel="stylesheet" type="text/css" href="../static/js_css/RadarChart/radar.css">
+  <script src="../static/js/thirdParty/radar.js"></script>
+  <link rel="stylesheet" type="text/css" href="../static/css/thirdParty/radar.css">
 
   <!-- PLOTLY -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -34,7 +34,7 @@
   <link href="https://cdn.datatables.net/select/1.2.3/css/select.dataTables.min.css" rel="stylesheet" />
 
 <!-- General CSS -->
-  <link rel="stylesheet" type="text/css" href="../static/js_css/general.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/general.css">
 
 
   <style>
@@ -80,10 +80,6 @@
         <div class="form-group">
 
           <select id="input0" class="js-example-basic-multiple" name="states[]" multiple="multiple" style="width: 50%">
-            <optgroup label="JavaSript">
-               <option value="AK">help</option>
-               <option value="HI">me</option>
-             </optgroup>
              <optgroup label="Python">
                <option value="CA">i</option>
                <option value="NV">am</option>
@@ -92,7 +88,23 @@
              </optgroup>
           </select>
 
+          <select id="input1" class="js-example-basic-multiple" name="tasks[]" multiple="multiple" style="width: 50%">
+            <optgroup label="Artificial Intellience">
+               <option value="AK">Computer vision</option>
+               <option value="HI">Machine learning</option>
+             </optgroup>
+             <optgroup label="Communication and security">
+               <option value="CA">Networking</option>
+               <option value="NV">Computer security</option>
+               <option value="OR">Cryptography</option>
+             </optgroup>
+             <optgroup label="Computer graphics">
+               <option value="CA">Computer graphics</option>
+               <option value="NV">Image processing</option>
+               <option value="OR">Video game engine</option>
+             </optgroup>
 
+          </select>
 
         </div>
       </div>
@@ -139,10 +151,10 @@
     <div>
   </div>
   <!-- GENERATOR SCRIPTS -->
-  <script src="../static/js_css/radarChart/radar_gen.js"></script>
-  <script src="../static/js_css/timeSeries/ts_gen.js"></script>
-  <script src="../static/js_css/dt/dt_gen.js"></script>
-  <script src="../static/js_css/form/input_gen.js"></script>
+  <script src="../static/js/chart_build.js"></script>
+  <script src="../static/js/resizer.js"></script>
+  <script src="../static/js/dt/dt_gen.js"></script>
+  <script src="../static/js/page_build.js"></script>
 
   <script>
     $(document).ready(function() {

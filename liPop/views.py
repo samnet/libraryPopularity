@@ -18,7 +18,7 @@ coll = db[collection_name]
 
 @app.route('/')
 def signUp():
-    return render_template('UI.html')
+    return render_template('index.html')
 
 @app.route('/sendMeDatJS', methods = [ 'GET' ])
 def sendItDatJS():
