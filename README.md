@@ -1,22 +1,25 @@
-## Library due diligence :+1: 
 
-Deployed [here](lolipop0.herokuapps.com).
-Drop me a msg if need help navigating this repo (it follows [this](flask.poco.org) structure)
+
+## Library due diligence :+1:
+
+Deployed [here](https://lolipop0.herokuapp.com/).
+Drop me a msg if need help navigating this repo (it follows [this](http://exploreflask.com/en/latest/organizing.html) structure)
 Feedback & suggestions very welcome
 
-Hr
+---
 
-### Project Des
+### Project Des
 
-The **goal is to assist the user in choosing among libraries** (aka. packages, modules ...)  when several options exist. For instance, different JS libraries for drawing an interactive line chart exist and it might not be obvious – if you are unexperienced – which one you should go for.
+> The **goal is to assist the user in choosing among libraries** (aka. packages, modules ...)  when several options exist.
+
+For instance, different JS libraries for drawing an interactive line chart exist and it might not be obvious – if you are unexperienced – which one you should go for.
 
 To do so, the idea is to **aggregate and synthesize information on libraries**. For example, a developer hesitating between two libraries can input their names and get a summary of their respective level of popularity in terms of downloads, forum activity etc. This can avoid wasting time using a package that is deprecated, for instance.
 
 The tool also suggests alternatives to the user’s input library(/ies). E.g., if the name of a deprecated library (that might have happened to have loads of followers on GitHub and an otherwise very sleek website) is entered, it suggests better libraries for doing similar tasks.
 
-Hr
-
-### Project Org
+---
+### Project Org
 
 The project is **open source**. I think that having one screen is enough. The simpler, the better.
 
@@ -24,9 +27,9 @@ Albeit being modest in its scope, I think it can be interesting due to, besides 
 
 I made a prototype of the platform, using R as an example (since I happen to use that language at work). In terms of ownership it belongs to everyone contributing to it. If familiar with the Python/JS/C++ infrastructure, why not get involved?
 
-Hr
+---
 
-### Project Spec
+### Project Spec
 
 **One screen** with two select inputs (a list of libraries organized by language, and a list of possible tasks) and some visualizations made with d3.js (or is there a better library?).
 

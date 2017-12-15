@@ -1,7 +1,7 @@
 # These variables are in version control.
 # This file contains most of the configuration variables that your app needs.
 # it s read before instance/config.py, so it overwritten by it
-DEBUG = False
+DEBUG = True
 MY_VARIABLE = 666
 
 
@@ -11,8 +11,7 @@ MY_VARIABLE = 666
 # DBNAME = "lolipop0"
 # DBSERVER = "ds135866"
 # MONGOURI = "mongodb://" + DBUSER + ":" + DBPASSWORD + "@"+ DBSERVER + ".mlab.com:" + DBPORT + "/" + DBNAME
-
-
+ 
 DBUSER = "heroku_kkmn7mbg"
 DBPASSWORD = "um3c11v432illv93k3o05tlfdv"
 DBPORT = "37686"
