@@ -25,7 +25,7 @@ The project is **open source**. I think that having one screen is enough. The si
 
 Albeit being modest in its scope, I think it can be interesting due to, besides the value it creates for the user, the **questions raised by the building of a ranking & recommendation system**. E.g., 1. How do you come up with alternatives propositions when the user enters a specific library? 2. Where do you find data on download volume for specific libraries? 3. How do you transform the data on search popularity found on Google Trend into something meaningful? Loads of issues to be tackled creatively.
 
-I made a prototype of the platform, using R as an example (since I happen to use that language at work). In terms of ownership it belongs to everyone contributing to it. If familiar with the Python/JS/C++ infrastructure, why not get involved?
+I made a prototype of the platform, using R as an example (since I happen to use that language at work). If familiar with the Python/JS/C++ (or any language really) infrastructure, why not build this site together?
 
 ---
 

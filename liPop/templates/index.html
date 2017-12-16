@@ -2,6 +2,7 @@
 <html>
 <head>
   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <title> LiPop </title>
   <!-- STANDARD: JQUERY, D3.JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -26,6 +27,8 @@
   <!--  AUTOCOMPLETE -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+  <!-- AUTOCOMPLETE THEME  (Applying the theme requires select2-bootstrap.css referenced after the default select2.css that comes with Select2)-->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" />
 
   <!--  DATATABLES -->
   <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
@@ -33,22 +36,25 @@
   <script src="https://cdn.datatables.net/select/1.2.3/js/dataTables.select.min.js"></script>
   <link href="https://cdn.datatables.net/select/1.2.3/css/select.dataTables.min.css" rel="stylesheet" />
 
-<!-- General CSS -->
+  <!-- General CSS -->
   <link rel="stylesheet" type="text/css" href="../static/css/general.css">
 
-
   <style>
+
+  /* navbar */
     body { padding-top: 70px; }
     navbar-text {font-size: 50%;}
+  /* boxes */
     #box1, #box2, #box3, #box4 {
       border: 2px solid black;
       border-radius: 5px;
     }
+  /* resizing */
     .svg-container {
   		width: 100%;
   	}
-
   </style>
+
 </head>
 
 <body>
@@ -74,42 +80,33 @@
 
   <!-- CONTAINER -->
   <div class="container-fluid">
-    <!-- Row 0 -->
+
+    <!-- Row 0 (inputs) -->
     <div class="row">
-      <div class="col-5">
-        <div class="form-group">
-
-          <select id="input0" class="js-example-basic-multiple" name="states[]" multiple="multiple" style="width: 50%">
-             <optgroup label="Python">
-               <option value="CA">i</option>
-               <option value="NV">am</option>
-               <option value="OR">trapped</option>
-               <option value="WA">here</option>
-             </optgroup>
-          </select>
-
-          <select id="input1" class="js-example-basic-multiple" name="tasks[]" multiple="multiple" style="width: 50%">
-            <optgroup label="Artificial Intellience">
-               <option value="AK">Computer vision</option>
-               <option value="HI">Machine learning</option>
-             </optgroup>
-             <optgroup label="Communication and security">
-               <option value="CA">Networking</option>
-               <option value="NV">Computer security</option>
-               <option value="OR">Cryptography</option>
-             </optgroup>
-             <optgroup label="Computer graphics">
-               <option value="CA">Computer graphics</option>
-               <option value="NV">Image processing</option>
-               <option value="OR">Video game engine</option>
-             </optgroup>
-
-          </select>
-
+        <div class="col-12" align="center">
+            <form role="form" class='form-horizontal'>
+                <div class="form-group" align="center">
+                    <div class="col-3" align="center">
+                      <select id="input0" class="js-example-basic-multiple" name="states[]" multiple="multiple" style="width: 100%">
+                         <optgroup label="Python">
+                           <option value="CA">i</option>
+                           <option value="NV">am</option>
+                           <option value="OR">trapped</option>
+                           <option value="WA">here</option>
+                         </optgroup>
+                      </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-5" align="center">
+                      <select id="input1" class="js-example-basic-multiple" name="tasks[]" multiple="multiple" style="width: 100%">  </select>
+                    </div>
+                </div>
+            </form>
         </div>
       </div>
-    </div>
-    <!-- Row 1  -->
+
+  <!-- Row 1  (visualisations)-->
     <div class="row">
       <div class="col-6">
         <div id="box1">
@@ -122,6 +119,7 @@
         </div>
       </div>
     </div>
+
     <!-- Row 2 -->
     <div class="row">
       <div class="col-12">
@@ -130,6 +128,7 @@
         </div>
       </div>
     </div>
+
     <!-- Row 3 -->
     <div class="row">
       <div class="col-6">
@@ -143,14 +142,19 @@
         </div>
       </div>
     </div>
+
     <!-- Row Last -->
     <div class="row">
       <div class="col-12">
         <button type="button" class="btn btn-info">Generate Report</button>
       </div>
     <div>
+
   </div>
+
+
   <!-- GENERATOR SCRIPTS -->
+  <script src="../static/js/front_end_vars.js"></script>
   <script src="../static/js/chart_build.js"></script>
   <script src="../static/js/resizer.js"></script>
   <script src="../static/js/dt/dt_gen.js"></script>
@@ -160,6 +164,8 @@
     $(document).ready(function() {
         $('.js-example-basic-multiple').select2();
     });
+    $.fn.select2.defaults.set( "theme", "bootstrap" );
+
   </script>
 </body>
 </html>

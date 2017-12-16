@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, request,json, jsonify
 import liPop.db_helper as db_helper
 from pymongo import MongoClient, TEXT
+import pickle
 
 # import config
 app = Flask(__name__, instance_relative_config=True)
@@ -20,7 +21,7 @@ def signUp():
     return render_template('index.html')
 
 @app.route('/sendMeDatJS', methods = [ 'GET' ])
-def sendItDatJS():
+def sendDatJS():
     currentSelection = request.args.get("currentSelection").split(',')
     out = {}
     for pack in currentSelection:
