@@ -3,8 +3,8 @@
 ## Library due diligence :+1:
 
 Deployed [here](https://lolipop0.herokuapp.com/).
-Drop me a msg if need help navigating this repo (it follows [this](http://exploreflask.com/en/latest/organizing.html) structure)
-Feedback & suggestions very welcome
+Drop me a msg if need help navigating this repo (it follows [this](http://exploreflask.com/en/latest/organizing.html) structure).
+Feedback & suggestions very welcome.
 
 ---
 
@@ -12,7 +12,7 @@ Feedback & suggestions very welcome
 
 > The **goal is to assist the user in choosing among libraries** (aka. packages, modules ...)  when several options exist.
 
-For instance, different JS libraries for drawing an interactive line chart exist and it might not be obvious – if you are unexperienced – which one you should go for.
+For instance, different JS libraries for drawing an interactive line chart exist and it might not be obvious – if you are inexperienced – which one you should go for.
 
 To do so, the idea is to **aggregate and synthesize information on libraries**. For example, a developer hesitating between two libraries can input their names and get a summary of their respective level of popularity in terms of downloads, forum activity etc. This can avoid wasting time using a package that is deprecated, for instance.
 

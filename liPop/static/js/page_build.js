@@ -22,7 +22,6 @@ $(document).ready(function(){
   // Populate the task selection (second) input
   input1 = document.getElementById('input1')
   topology.forEach(function(item, i){
-    console.log(item.name)
     newcluster = document.createElement("optgroup")
     newcluster.id = item.name
     newcluster.label = item.name

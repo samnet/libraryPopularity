@@ -61,8 +61,8 @@ function drawPlotlyTS(data, id = "timeseries0", names = ["One", "Two"], title = 
 
   var layout = {  // constuct Layout object to feed into Plotly.newPlot
     legend: {
-      x: 0.1,
-      y: 0.8
+      x: 0.5,
+      y: 0.5
     },
     autosize: true,
     title: title,
