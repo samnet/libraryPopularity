@@ -56,6 +56,22 @@ $(document).ready(function(){
         });
       }
   })
+
+  // Update table of recommandations on selection
+  $("#input0").change(function(){
+      currentSelection = $("#input0").val()
+      if (currentSelection.length > 0) { // do nothing if change is deletion of unique selected tag
+        var suggestions=shuffled.slice(1,4); // For some reason I don't manage to have pre selection > 1
+        var dataSet = [
+          [ suggestions[0], "10", "0", ""],
+          [ suggestions[1], "7", "1", ""],
+          [ suggestions[2], "7", "0", ""],
+          [ suggestions[3], "4", "1", ""]
+        ];
+        DTbuilder("datatable0", dataSt)
+      }
+  })
+
   // trigger a change so the page gets populated upon launching (ow. no change)
   $("#input0").change()
 })
@@ -105,4 +121,33 @@ function arraySum(anArray){
     count+=anArray[i];
   }
   return(count)
+}
+
+// wrapper around datatable
+function DTbuilder(id, data){
+  $('#' + id).DataTable( {
+      "paging": false,
+      "searching": false,
+      "info": false,
+      data: data,
+      columns: [
+          { title: "Name" },
+          { title: "Prevalence" },
+          { title: "Tendency" },
+          { title: "Add to Comp." }
+      ],
+      columnDefs: [ {
+         orderable: false,
+         className: 'select-checkbox',
+         checkboxes: {
+            'selectRow': true
+         },
+         targets: 3
+       } ],
+       select: {
+           style:    'multi',
+           selector: 'td:first-child'
+       },
+       order: [[ 1, 'asc' ]]
+  } );
 }
