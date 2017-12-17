@@ -1,5 +1,5 @@
 popularRlibs =  ["viridisLite","devtools","readr","dplyr","readxl","shiny","R6","tidyr",
-"boot","Rcpp","tibble","mgcv","psych","xlsx","tidyverse","lubridate",
+"boot","Rcpp","tibble","mgcv","xlsx","tidyverse","lubridate",
 "stingr","colorspace","backports"]
 
 var shuffled = popularRlibs.sort(function(){return .5 - Math.random()});
@@ -134,6 +134,8 @@ function pageGenerator(response, inputID){
   })
 
   // draw
+  console.log("hoy")
+  console.log(supSetRadar)
   drawPlotlyTS(supSetTS, id = "timeseries0", names = currentSelection)
   radarConstructor("radarchart0", arrayOfDataArrays = supSetRadar)
 }
