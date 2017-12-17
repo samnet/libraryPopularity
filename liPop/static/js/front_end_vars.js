@@ -1,4 +1,17 @@
-// This file contains two variables that are used for filling in the input forms.
+// This file contains:
+// - color palette
+// - two variables that are used for filling in the input forms.
+
+// Color palette
+// initially, we had http://www.color-hex.com/color-palette/33532.
+// to have a bit more transparencty, we now have:
+var COLORPAL = [
+"#ea4335", 	 // red
+"#34a853",	 // green
+"#4285f4",   // blue (note you should install "pigment" atm package...)
+"#fbbc05",   // yellow
+"#f2f2f2",   // grey
+]
 
 // Input 2 options
 var topology = [

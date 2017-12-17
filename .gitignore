@@ -1,6 +1,5 @@
-env3/
+*.pkl
 .env3/
-env/
 *.pyc
 __pycache__
 fbapp/static/*.jpg
@@ -10,5 +9,4 @@ requirementsP2.txt
 .cache/
 database/
 pyUtil/
-reqPy3.txt
-
+lazy.py

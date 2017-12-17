@@ -1,6 +1,6 @@
 popularRlibs =  ["viridisLite","devtools","readr","dplyr","readxl","shiny","R6","tidyr",
-"boot","Rcpp","data.table","tibble","mgcv","psych","xlsx","tidyverse","lubridate",
-"stingr","colorspace","backports","XML"]
+"boot","Rcpp","tibble","mgcv","psych","xlsx","tidyverse","lubridate",
+"stingr","colorspace","backports"]
 
 var shuffled = popularRlibs.sort(function(){return .5 - Math.random()});
 var preSelection=shuffled.slice(0,1); // For some reason I don't manage to have pre selection > 1
@@ -57,18 +57,47 @@ $(document).ready(function(){
       }
   })
 
+  // Create DataTable
+  var datatable0 = $('#datatable0').DataTable(
+    {
+        "paging": false,
+        "searching": false,
+        "info": false,
+        columns: [
+            { title: "Name" },
+            { title: "Prevalence" },
+            { title: "Tendency" },
+            { title: "Add to Comp." }
+        ],
+        columnDefs: [ {  // checkmark boxes
+           orderable: false,
+           className: 'select-checkbox',
+           checkboxes: {
+              'selectRow': true
+           },
+           targets: 3
+         } ],
+         select: {    // row selection
+             style:    'multi',
+         },
+         order: [[ 1, 'asc' ]]  // row ordering
+    }
+  );
+
   // Update table of recommandations on selection
   $("#input0").change(function(){
       currentSelection = $("#input0").val()
-      if (currentSelection.length > 0) { // do nothing if change is deletion of unique selected tag
-        var suggestions=shuffled.slice(1,4); // For some reason I don't manage to have pre selection > 1
+      if (currentSelection.length > 0) {
+        datatable0.clear().draw()  // void the table
+        var suggestions=shuffled.slice(1,4); // make some random suggestions
         var dataSet = [
           [ suggestions[0], "10", "0", ""],
           [ suggestions[1], "7", "1", ""],
-          [ suggestions[2], "7", "0", ""],
-          [ suggestions[3], "4", "1", ""]
+          [ suggestions[2], "7", "0", ""]
         ];
-        DTbuilder("datatable0", dataSt)
+        dataSet.forEach(function(row ,i){
+          datatable0.row.add(row).draw( false )
+        })
       }
   })
 

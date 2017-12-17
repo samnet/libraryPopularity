@@ -8,8 +8,8 @@ function radarConstructor(tag, arrayOfDataArrays = [[1,1,1,1,1]], axisTitles = A
 
   var w = 500;
   var h = 500;
-  var colorscale = d3.scale.category10();
-
+  // var colorscale = d3.scale.category10();
+  // console.log(colorscale)
   var dataSup = []  // builds the proper object for feeding into RadarChart
   arrayOfDataArrays.forEach(function(array, i){
     var dataSub = []
@@ -19,6 +19,14 @@ function radarConstructor(tag, arrayOfDataArrays = [[1,1,1,1,1]], axisTitles = A
     dataSup.push(dataSub)
   })
 
+  // clumsy color generating function...
+  i = 0 // clumsy...
+  couleur = function(){
+    out = COLORPAL[i]
+    i++
+    return(out)
+  }
+
   //Options for the Radar chart, other than default
   var mycfg = {
     w: w,
@@ -27,6 +35,7 @@ function radarConstructor(tag, arrayOfDataArrays = [[1,1,1,1,1]], axisTitles = A
     levels: 6,
     ExtraWidthX: 200,
     ExtraWidthY: 100
+    // , color: couleur
   }
 
   //Call function to draw the Radar chart
@@ -34,9 +43,7 @@ function radarConstructor(tag, arrayOfDataArrays = [[1,1,1,1,1]], axisTitles = A
   RadarChart.draw("#" + tag, dataSup, mycfg);
 }
 
-function colorPalette(){
-  return "#" + Math.random().toString(16).slice(2, 8) // get a list of 10 nice colors
-}
+
 
 // input: data (an array of arrays, an id, the latter of the form [dates, prices], names (an array), title (str))
 function drawPlotlyTS(data, id = "timeseries0", names = ["One", "Two"], title = "Downloads"){
@@ -52,8 +59,7 @@ function drawPlotlyTS(data, id = "timeseries0", names = ["One", "Two"], title = 
       name: names[i],
       x: item[0],
       y: item[1],
-      line: {color: "#" + Math.random().toString(16).slice(2, 8)}
-      // line: {color: colorPalette[i]}
+      line: {color: COLORPAL[i]}
     }
     // console.log("names[i]: ",  +names[i])
     dataArray.push(trace)
