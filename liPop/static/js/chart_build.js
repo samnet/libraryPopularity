@@ -4,6 +4,7 @@
 //////////////////////////////// SPIDER CHART //////////////////////////////////
 AXISTITLES = ["Discussion\n forums (SO)", "Developer\n activity (GH)", "Web search\n (Google data)", "Download\n volumes", "Documentation \n quality"]
 
+
 function radarConstructor(tag, arrayOfDataArrays = [[1, 1, 1, 1, 1]], axisTitles = AXISTITLES) {
 
   var marksCanvas = document.getElementById(tag);
@@ -53,7 +54,9 @@ function radarConstructor(tag, arrayOfDataArrays = [[1, 1, 1, 1, 1]], axisTitles
   });
 }
 
-// info additionel hovering
+// Todo:
+// - info additionel hovering (links)
+// - https://stackoverflow.com/questions/26521352/create-dynamic-chart-with-chart-js
 
 
 ///////////////////////////// SPIDER CHART (OLD) ///////////////////////////////

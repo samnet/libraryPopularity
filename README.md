@@ -35,4 +35,29 @@ I made a prototype of the platform, using R as an example (since I happen to use
 
 The **first input** is simply the list of libraries the user is initially interested in. The **second input** is a list of “task classifiers” the user wants to achieve. E.g., [“Scientific Computing”, “Simulation”]. That second input enables us to come up with alternative suggestions.
 
-The **radar graph** summarizes how popular a (some) package(s) are, using various metrics (the axes of the radar) as of the time of the request, e.g., number of times a package has been downloaded, popularity of its associated SO tag, etc. The **time series** shows how (an aggregate measure of) the package’s popularity has evolved. The **weighted relation map** describes what package the input is most often associated with.
+The **radar graph** summarizes how popular a (some) package(s) are, using various metrics (the axes of the radar) as of the time of the request, e.g., number of times a package has been downloaded, popularity of its associated SO tag, etc. The **time series** shows how (an aggregate measure of) the package’s popularity has evolved. 
+
+---
+
+### Running Local
+
+
+```python
+git clone https://github.com/samnet/libraryPopularity.git
+virtualenv -p python3 .env3
+source .env3/bin/activate
+pip install -r requirements.txt  
+python run.py
+```
+
+You might have guessed: we use Python 3, and the dependencies are listed in *requirements.txt*.
+
+---
+
+### Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request

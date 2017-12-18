@@ -1,9 +1,16 @@
+// Establish a preselection so to guide the user.
 popularRlibs =  ["viridisLite","devtools","readr","dplyr","readxl","shiny","R6","tidyr",
 "boot","Rcpp","tibble","mgcv","xlsx","tidyverse","lubridate",
 "stingr","colorspace","backports"]
+popoularTasks = ["Image processing", 'Information visualization', 'Application development','Natural Language Processing','Evolutionary Computing',
+'Machine Learning','Artificial intelligence','Computational neuroscience','Computational science','Computational chemistry','Numerical analysis','Parallel computing',
+'Data mining','DAP Programming']
 
-var shuffled = popularRlibs.sort(function(){return .5 - Math.random()});
-var preSelection=shuffled.slice(0,1); // For some reason I don't manage to have pre selection > 1
+var shuffledLibs = popularRlibs.sort(function(){return .5 - Math.random()});
+var shuffledTasks = popoularTasks.sort(function(){return .5 - Math.random()});
+var preSelectionLibs = shuffledLibs.slice(0,2); // For some reason I don't manage to have pre selection > 1
+var preSelectionTasks = shuffledTasks.slice(0,3); // For some reason I don't manage to have pre selection > 1
+
 
 $(document).ready(function(){
 
@@ -34,8 +41,14 @@ $(document).ready(function(){
     })
   })
 
-  // Pre-select (restrict to well known library pairs)
-  document.getElementById('input0').value = preSelection;
+  // Transform html select inputs to select2 inputs. Give them initial values.
+  $(document).ready(function() {
+    // Pre-select (restrict to well known library pairs)
+    $('#input0').select2().val(preSelectionLibs).trigger("change");
+    // Pre-select (restrict to well known library pairs)
+    $('#input1').select2().val(preSelectionTasks).trigger("change");
+  });
+  $.fn.select2.defaults.set( "theme", "bootstrap" );
 
   // Update page content based on selection
   $("#input0").change(function(){
@@ -89,7 +102,7 @@ $(document).ready(function(){
       currentSelection = $("#input0").val()
       if (currentSelection.length > 0) {
         datatable0.clear().draw()  // void the table
-        var suggestions=shuffled.slice(1,4); // make some random suggestions
+        var suggestions=shuffledLibs.slice(3,6); // make some random suggestions
         var dataSet = [
           [ suggestions[0], "10", "0", ""],
           [ suggestions[1], "7", "1", ""],
@@ -134,8 +147,6 @@ function pageGenerator(response, inputID){
   })
 
   // draw
-  console.log("hoy")
-  console.log(supSetRadar)
   drawPlotlyTS(supSetTS, id = "timeseries0", names = currentSelection)
   radarConstructor("radarchart0", arrayOfDataArrays = supSetRadar)
 }
