@@ -9,4 +9,5 @@ requirementsP2.txt
 .cache/
 database/
 pyUtil/
+instance/
 lazy.py
