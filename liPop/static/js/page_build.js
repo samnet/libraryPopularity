@@ -71,31 +71,7 @@ $(document).ready(function(){
   })
 
   // Create DataTable
-  var datatable0 = $('#datatable0').DataTable(
-    {
-        "paging": false,
-        "searching": false,
-        "info": false,
-        columns: [
-            { title: "Name" },
-            { title: "Prevalence" },
-            { title: "Tendency" },
-            { title: "Add to Comp." }
-        ],
-        columnDefs: [ {  // checkmark boxes
-           orderable: false,
-           className: 'select-checkbox',
-           checkboxes: {
-              'selectRow': true
-           },
-           targets: 3
-         } ],
-         select: {    // row selection
-             style:    'multi',
-         },
-         order: [[ 1, 'asc' ]]  // row ordering
-    }
-  );
+  DTbuilder("datatable0")
 
   // Update table of recommandations on selection
   $("#input0").change(function(){
@@ -166,12 +142,11 @@ function arraySum(anArray){
 }
 
 // wrapper around datatable
-function DTbuilder(id, data){
+function DTbuilder(id){
   $('#' + id).DataTable( {
       "paging": false,
       "searching": false,
       "info": false,
-      data: data,
       columns: [
           { title: "Name" },
           { title: "Prevalence" },
@@ -187,8 +162,8 @@ function DTbuilder(id, data){
          targets: 3
        } ],
        select: {
-           style:    'multi',
-           selector: 'td:first-child'
+           // selector: 'td:first-child',
+           style:    'multi'
        },
        order: [[ 1, 'asc' ]]
   } );
