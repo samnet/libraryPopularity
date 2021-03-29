@@ -22,7 +22,7 @@ prompt-toolkit==1.0.15
 ptyprocess==0.5.2
 pyexcel==0.5.6
 pyexcel-io==0.5.4
-Pygments==2.2.0
+Pygments==2.7.4
 pymongo==3.5.1
 python-dateutil==2.6.1
 pytrends==4.3.0
